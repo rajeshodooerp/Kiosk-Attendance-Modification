@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+<t t-name="hr_attendance_modification.KioskProjectScreen">
+    <button t-on-click="() => this.props.onClickBack()" class="o_hr_attendance_back_button btn btn-block btn-secondary btn-lg">
+        <i class="oi oi-chevron-left me-2"/> Go back
+    </button>
+    <h5>Please Enter Project Details</h5>
+    <div t-if="this.props.projects" class="row mb-2">
+        <b class="p-0 text-start">Project</b>
+        <select class="form-control" style="border:1px solid black;" t-on-change="onprojectChange">
+            <option value="">--Enter project--</option>
+            <t t-foreach="this.props.projects" t-as="project" t-key="project.id">
+                <option t-att-value="project.id">
+                    <t t-esc="project.name"/>
+                </option>
+            </t>
+        </select>
+    </div>
+    <div t-if="this.props.projects" class="row mb-2">
+        <b class="p-0 text-start">Task</b>
+        <select class="form-control" style="border:1px solid black;" t-on-change="ontaskChange">
+            <option value="">--Enter task--</option>
+            <t t-foreach="this.state.tasks" t-as="task" t-key="task.id">
+                <option t-att-value="task.id">
+                    <t t-esc="task.name"/>
+                </option>
+            </t>
+        </select>
+    </div>
+    <div t-if="this.props.projects" class="row mb-2">
+        <b class="p-0 text-start">Description</b>
+        <textarea placeholder="Please enter description" t-on-change="onDescriptionChange"></textarea>
+    </div>
+    <button t-if="this.state.project and this.state.task and this.state.description" class="btn btn-primary" t-on-click="onClickProceed">Proceed</button>
+</t>
+
+</templates>

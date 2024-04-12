@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-inherit="hr_attendance.public_kiosk_app" t-inherit-mode="extension">
+        <xpath expr='//t[@t-call="hr_attendance.companyHeader"]' position="after">
+            <div t-if="this.props.projects" class="row mb-2">
+                <strong class="p-0 text-start">Project: </strong>
+                <select class="form-control" id="attendance_project" style="border:1px solid black;" t-on-change="onProjectChanged">
+                    <option value="">Select project</option>
+                    <t t-foreach="this.props.projects" t-as="project" t-key="project.id">
+                        <option t-att-value="project.id" t-att-selected="this.state.project == project.id"><t t-esc="project.name"/></option>
+                    </t>
+                </select>
+                <span class="text-start p-0" t-if="this.state.projectMandatoryError" style="color:red;">Project cannot be blank!</span>
+            </div>
+            <div t-if="this.state.tasks" class="row mb-2">
+                <strong class="p-0 text-start">Task: </strong>
+                <select class="form-control" style="border:1px solid black;" t-on-change="onTaskChanged">
+                    <option value="">Select task</option>
+                    <t t-foreach="this.state.tasks" t-as="task" t-key="task.id">
+                        <option t-att-value="task.id" t-att-selected="this.state.task == task.id"><t t-esc="task.name"/></option>
+                    </t>
+                </select>
+                <span class="text-start p-0" t-if="this.state.taskMandatoryError" style="color:red;">Task cannot be blank!</span>
+            </div>
+            <div class="row mb-2">
+                <strong class="p-0 text-start">Description: </strong>
+                <textarea class="attendance_description"  t-on-change="onDescriptionChanged" t-att-value="this.state.description">
+                </textarea>
+                <span class="text-start p-0" t-if="this.state.descMandatoryError" style="color:red;">Description cannot be blank!</span>
+            </div>
+        </xpath>
+
+        <xpath expr="//KioskManualSelection" position="before">
+            <div t-if="this.props.projects" class="row mb-2">
+                <strong class="p-0 text-start">Project: </strong>
+                <select class="form-control" id="attendance_project" style="border:1px solid black;" t-on-change="onProjectChanged">
+                    <option value="">Select project</option>
+                    <t t-foreach="this.props.projects" t-as="project" t-key="project.id">
+                        <option t-att-value="project.id" t-att-selected="this.state.project == project.id"><t t-esc="project.name"/></option>
+                    </t>
+                </select>
+                <span class="text-start p-0" t-if="this.state.projectMandatoryError" style="color:red;">Project cannot be blank!</span>
+            </div>
+            <div t-if="this.state.tasks" class="row mb-2">
+                <strong class="p-0 text-start">Task: </strong>
+                <select class="form-control" style="border:1px solid black;" t-on-change="onTaskChanged">
+                    <option value="">Select task</option>
+                    <t t-foreach="this.state.tasks" t-as="task" t-key="task.id">
+                        <option t-att-value="task.id" t-att-selected="this.state.task == task.id"><t t-esc="task.name"/></option>
+                    </t>
+                </select>
+                <span class="text-start p-0" t-if="this.state.taskMandatoryError" style="color:red;">Task cannot be blank!</span>
+            </div>
+            <div class="row mb-2">
+                <strong class="p-0 text-start">Description: </strong>
+                <textarea class="attendance_description" t-on-change="onDescriptionChanged" t-att-value="this.state.description">
+                </textarea>
+                <span class="text-start p-0" t-if="this.state.descMandatoryError" style="color:red;">Description cannot be blank!</span>
+            </div>
+        </xpath>
+    </t>
+
+</templates>

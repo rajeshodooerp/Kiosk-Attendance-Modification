@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--    Update createPublicKioskAttendanceKiosk to new fucntion as we need to load projects and tasks.-->
+    <template id="publick_kiosk_mode_modification" inherit_id="hr_attendance.public_kiosk_mode" name="Attendance Kiosk">
+        <xpath expr="//script[@type='text/javascript']" position="replace">
+            <script type="text/javascript">
+                    odoo.define("hr_attendance_modification.public_kiosk_app", ["@hr_attendance_modification/public_kiosk/public_kiosk_app_modification"], function (require) {
+                    var { createPublicKioskAttendanceKiosk } = require("@hr_attendance_modification/public_kiosk/public_kiosk_app_modification");
+                    createPublicKioskAttendanceKiosk(document, <t t-out="json.dumps(kiosk_backend_info)"/>);
+                    });
+            </script>
+        </xpath>
+    </template>
+</odoo>
